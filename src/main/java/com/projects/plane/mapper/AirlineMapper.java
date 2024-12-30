@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class AirlineMapper {
     public static AirlineResponseDto mapToAirlineResponseDto(Airline airline) {
-        AirlineResponseDto response = new AirlineResponseDto(
+        return new AirlineResponseDto(
                 airline.getId(),
                 airline.getName(),
                 airline.getIataCode(),
@@ -22,7 +22,6 @@ public class AirlineMapper {
                         .map(AirportMapper::mapToAirportResponseDto)
                         .collect(Collectors.toList())
         );
-        return response;
     }
 
     public static Airline mapToAirline(AirlineRequestDto airlineRequestDto) {

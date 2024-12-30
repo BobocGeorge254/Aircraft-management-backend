@@ -1,6 +1,6 @@
 package com.projects.plane.model.enums;
 
-public enum OperatingStatus {
+public enum AirlineOperatingStatus {
     ACTIVE,
     INACTIVE,
     SUSPENDED

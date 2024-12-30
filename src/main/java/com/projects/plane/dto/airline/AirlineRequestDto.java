@@ -1,6 +1,6 @@
 package com.projects.plane.dto.airline;
 
-import com.projects.plane.model.enums.OperatingStatus;
+import com.projects.plane.model.enums.AirlineOperatingStatus;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -26,6 +26,6 @@ public class AirlineRequestDto {
 
     private String country;
     private String headquarters;
-    private OperatingStatus operatingStatus;
+    private AirlineOperatingStatus operatingStatus;
     private Integer foundedYear;
 }

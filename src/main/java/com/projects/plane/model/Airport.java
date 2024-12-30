@@ -29,12 +29,12 @@ public class Airport {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "iata_code")
+    @Column(name = "iata_code", unique = true)
     @Size(min = 3, max = 3, message = "IATA code must be 3 characters long!")
     @Pattern(regexp = "^[A-Za-z]{3}$", message = "IATA code must consist of 3 alphabetic characters!")
     private String iataCode;
 
-    @Column(name = "icao_code")
+    @Column(name = "icao_code", unique = true)
     @Size(min = 4, max = 4, message = "ICAO code must be 4 characters long!")
     @Pattern(regexp = "^[A-Za-z]{4}$", message = "ICAO code must consist of 4 alphabetic characters!")
     private String icaoCode;
