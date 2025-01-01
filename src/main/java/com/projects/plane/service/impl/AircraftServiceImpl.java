@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AircraftServiceImpl implements AircraftService {
 
-    private final AircraftRepository aircraftRepository;
-    private final AirlineRepository airlineRepository;
-    private final AirplaneRepository airplaneRepository;
+    private AircraftRepository aircraftRepository;
+    private AirlineRepository airlineRepository;
+    private AirplaneRepository airplaneRepository;
 
     @Override
     public AircraftResponseDto createAircraft(AircraftRequestDto aircraftRequestDto) {
@@ -76,19 +76,26 @@ public class AircraftServiceImpl implements AircraftService {
 
     @Override
     public List<AircraftResponseDto> getAllAircraft(UUID airplaneId, UUID airlineId) {
-        List<Aircraft> aircraft = Optional.ofNullable(airplaneId)
-                .map(aId -> Optional.ofNullable(airlineId)
-                        .map(alId -> aircraftRepository.findByAirplaneIdAndAirlineId(aId, alId))
-                        .orElseGet(() -> aircraftRepository.findByAirplaneId(aId)))
-                .orElseGet(() -> Optional.ofNullable(airlineId)
-                        .map(aircraftRepository::findByAirlineId)
-                        .orElseGet(aircraftRepository::findAll));
+        List<Aircraft> aircraft;
 
-        return aircraft.stream()
+        if (airplaneId != null && airlineId != null) {
+            aircraft = aircraftRepository.findByAirplaneIdAndAirlineId(airplaneId, airlineId);
+        }
+        else if (airplaneId != null) {
+            aircraft = aircraftRepository.findByAirplaneId(airplaneId);
+        }
+        else if (airlineId != null) {
+            aircraft = aircraftRepository.findByAirlineId(airlineId);
+        }
+        else {
+            aircraft = aircraftRepository.findAll();
+        }
+
+        return aircraft
+                .stream()
                 .map(AircraftMapper::mapToAircraftResponseDto)
                 .collect(Collectors.toList());
     }
-
 
     @Override
     public void deleteAircraft(UUID id) {

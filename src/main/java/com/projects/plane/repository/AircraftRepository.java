@@ -9,8 +9,10 @@ import java.util.UUID;
 
 @Repository
 public interface AircraftRepository extends JpaRepository<Aircraft, UUID> {
+
     List<Aircraft> findByAirplaneId(UUID airplaneId);
     List<Aircraft> findByAirlineId(UUID airlineId);
     List<Aircraft> findByAirplaneIdAndAirlineId(UUID airplaneId, UUID airlineId);
+
 }
 

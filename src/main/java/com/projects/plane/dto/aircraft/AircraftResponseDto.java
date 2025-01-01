@@ -17,6 +17,8 @@ public class AircraftResponseDto {
     private String registrationNumber;
     private AircraftOperatingStatus aircraftOperatingStatus;
     private String airlineName;
+    private String airlineIataCode;
+    private String airlineIcaoCode;
     private String airplaneManufacturer;
     private String airplaneModel;
 }

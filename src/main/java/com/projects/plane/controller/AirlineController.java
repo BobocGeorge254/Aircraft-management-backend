@@ -22,7 +22,7 @@ import java.util.UUID;
 )
 public class AirlineController {
 
-    private final AirlineService airlineService;
+    private AirlineService airlineService;
 
     @PostMapping
     @Operation(summary = "Create a new airline")

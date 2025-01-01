@@ -22,7 +22,7 @@ import java.util.UUID;
 )
 public class AirportController {
 
-    private final AirportService airportService;
+    private AirportService airportService;
 
     @PostMapping
     @Operation(summary = "Create a new airport")

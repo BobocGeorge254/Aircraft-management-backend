@@ -1,10 +1,12 @@
 package com.projects.plane.mapper;
 
+import com.projects.plane.dto.airline.AirlineHubDto;
 import com.projects.plane.dto.airport.AirportRequestDto;
 import com.projects.plane.dto.airport.AirportResponseDto;
 import com.projects.plane.model.Airline;
 import com.projects.plane.model.Airport;
 
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class AirportMapper {
@@ -20,10 +22,21 @@ public class AirportMapper {
                 airport.getLatitude(),
                 airport.getLongitude(),
                 airport.getNumberOfRunways(),
-                airport.getAirlines()
-                        .stream()
-                        .map(Airline::getName)
-                        .collect(Collectors.toList())
+                airport.getAirlines() != null
+                        ? airport.getAirlines()
+                            .stream()
+                            .map(Airline::getName)
+                            .collect(Collectors.toList())
+                        : Collections.emptyList()
+        );
+    }
+
+    public static AirlineHubDto mapToAirlineHubDto(Airport airport) {
+        return new AirlineHubDto(
+                airport.getName(),
+                airport.getIataCode(),
+                airport.getIcaoCode(),
+                airport.getCountry()
         );
     }
 

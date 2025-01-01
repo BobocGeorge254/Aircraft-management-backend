@@ -1,6 +1,5 @@
 package com.projects.plane.dto.airline;
 
-import com.projects.plane.dto.airport.AirportResponseDto;
 import com.projects.plane.model.enums.AirlineOperatingStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +24,6 @@ public class AirlineResponseDto {
     private String headquarters;
     private AirlineOperatingStatus operatingStatus;
     private Integer foundedYear;
-    private List<AirportResponseDto> hubs = new ArrayList<>();
+    private List<AirlineHubDto> hubs = new ArrayList<>();
 
 }

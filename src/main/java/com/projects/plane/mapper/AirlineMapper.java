@@ -4,6 +4,7 @@ import com.projects.plane.dto.airline.AirlineRequestDto;
 import com.projects.plane.dto.airline.AirlineResponseDto;
 import com.projects.plane.model.Airline;
 
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class AirlineMapper {
@@ -17,10 +18,12 @@ public class AirlineMapper {
                 airline.getHeadquarters(),
                 airline.getOperatingStatus(),
                 airline.getFoundedYear(),
-                airline.getHubs()
-                        .stream()
-                        .map(AirportMapper::mapToAirportResponseDto)
-                        .collect(Collectors.toList())
+                airline.getHubs() != null
+                        ? airline.getHubs()
+                            .stream()
+                            .map(AirportMapper::mapToAirlineHubDto)
+                            .collect(Collectors.toList())
+                        : Collections.emptyList()
         );
     }
 

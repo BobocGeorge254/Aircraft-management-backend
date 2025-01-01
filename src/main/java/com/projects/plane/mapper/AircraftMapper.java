@@ -13,6 +13,8 @@ public class AircraftMapper {
                 aircraft.getRegistrationNumber(),
                 aircraft.getOperatingStatus(),
                 aircraft.getAirline() != null ? aircraft.getAirline().getName() : null,
+                aircraft.getAirline() != null ? aircraft.getAirline().getIataCode() : null,
+                aircraft.getAirline() != null ? aircraft.getAirline().getIcaoCode() : null,
                 aircraft.getAirplane().getManufacturer(),
                 aircraft.getAirplane().getModel()
         );

@@ -19,7 +19,7 @@ import java.util.UUID;
 @Tag(name = "Aircraft", description = "Endpoints for managing aircraft data.")
 public class AircraftController {
 
-    private final AircraftService aircraftService;
+    private AircraftService aircraftService;
 
     @PostMapping
     @Operation(summary = "Create a new aircraft")
