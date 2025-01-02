@@ -5,6 +5,7 @@ import com.projects.plane.dto.aircraft.AircraftResponseDto;
 import com.projects.plane.service.AircraftService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class AircraftController {
 
     @PostMapping
     @Operation(summary = "Create a new aircraft")
-    public ResponseEntity<AircraftResponseDto> createAircraft(@RequestBody AircraftRequestDto dto) {
+    public ResponseEntity<AircraftResponseDto> createAircraft(@Valid @RequestBody AircraftRequestDto dto) {
         AircraftResponseDto savedAircraft = aircraftService.createAircraft(dto);
         return new ResponseEntity<>(savedAircraft, HttpStatus.CREATED);
     }

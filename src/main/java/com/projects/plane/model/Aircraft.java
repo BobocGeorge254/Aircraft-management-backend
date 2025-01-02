@@ -2,6 +2,8 @@ package com.projects.plane.model;
 
 import com.projects.plane.model.enums.AircraftOperatingStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,9 +31,12 @@ public class Aircraft {
     @JoinColumn(name = "airplane_id", nullable = false)
     private Airplane airplane;
 
+    @NotBlank(message = "Registration number cannot be blank.")
+    @Size(min = 1, max = 20, message = "Registration number must be between 1 and 20 characters.")
     @Column(name = "registration_number", unique = true, nullable = false)
     private String registrationNumber;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "operating_status", nullable = false)
     private AircraftOperatingStatus operatingStatus;
 }

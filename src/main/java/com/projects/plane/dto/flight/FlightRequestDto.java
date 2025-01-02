@@ -18,23 +18,24 @@ import java.util.UUID;
 @AllArgsConstructor
 public class FlightRequestDto {
 
-    @NotNull(message = "Aircraft ID cannot be null")
+    @NotNull(message = "Aircraft ID cannot be null.")
     private UUID aircraftId;
 
-    @NotNull(message = "Departure airport ID cannot be null")
+    @NotNull(message = "Departure airport ID cannot be null.")
     private UUID departureAirportId;
 
-    @NotNull(message = "Arrival airport ID cannot be null")
+    @NotNull(message = "Arrival airport ID cannot be null.")
     private UUID arrivalAirportId;
 
-    @NotNull(message = "Arrival airport ID cannot be null")
+    @NotNull(message = "Arrival airport ID cannot be null.")
+    @Size(min = 2, max = 10, message = "Flight number should be between 2 and 10 characters.")
     private String flightNumber;
 
-    @NotNull(message = "Departure date and time cannot be null")
-    @Future(message = "Departure time must be in the future")
+    @NotNull(message = "Departure date and time cannot be null.")
+    @Future(message = "Departure time must be in the future.")
     private LocalDateTime departureDateTime;
 
-    @NotNull(message = "Arrival date and time cannot be null")
+    @NotNull(message = "Arrival date and time cannot be null.")
     private LocalDateTime arrivalDateTime;
 
     @NotNull(message = "Flight status cannot be null")
