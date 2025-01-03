@@ -4,6 +4,7 @@ import com.projects.plane.dto.aircraft.AircraftRequestDto;
 import com.projects.plane.dto.aircraft.AircraftResponseDto;
 import com.projects.plane.service.AircraftService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -44,6 +45,8 @@ public class AircraftController {
     }
 
     @GetMapping
+    @Parameter(name = "airplaneId", description = "Filter by airplane ID.")
+    @Parameter(name = "airlineId", description = "Filter by airline ID.")
     @Operation(summary = "Get all aircraft with filters.")
     public ResponseEntity<List<AircraftResponseDto>> getAllAircraft(
             @RequestParam(value = "airplaneId", required = false) UUID airplaneId,

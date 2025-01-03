@@ -16,13 +16,13 @@ import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/tickets")
+@RequestMapping("/api/ticket")
 @Tag(name = "Ticket", description = "Endpoints for managing ticket data.")
 public class TicketController {
 
     private TicketService ticketService;
 
-    /*@PostMapping
+    @PostMapping
     @Operation(summary = "Create a new ticket.")
     public ResponseEntity<TicketResponseDto> createTicket(@Valid @RequestBody TicketRequestDto ticketRequestDto) {
         TicketResponseDto savedTicket = ticketService.createTicket(ticketRequestDto);
@@ -57,5 +57,5 @@ public class TicketController {
     public ResponseEntity<Void> deleteTicket(@PathVariable("id") UUID id) {
         ticketService.deleteTicket(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }*/
+    }
 }

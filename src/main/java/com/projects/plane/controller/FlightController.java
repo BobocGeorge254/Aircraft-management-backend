@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/flights")
+@RequestMapping("/api/flight")
 @Tag(name = "Flights", description = "Endpoints for managing flights data.")
 public class FlightController {
 
