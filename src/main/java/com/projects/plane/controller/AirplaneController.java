@@ -5,6 +5,7 @@ import com.projects.plane.dto.airplane.AirplaneResponseDto;
 import com.projects.plane.service.AirplaneService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,36 +26,36 @@ public class AirplaneController {
     private AirplaneService airplaneService;
 
     @PostMapping
-    @Operation(summary = "Create a new airplane")
-    public ResponseEntity<AirplaneResponseDto> createAirplane(@RequestBody AirplaneRequestDto airplaneRequestDto) {
+    @Operation(summary = "Create a new airplane.")
+    public ResponseEntity<AirplaneResponseDto> createAirplane(@Valid @RequestBody AirplaneRequestDto airplaneRequestDto) {
         AirplaneResponseDto savedAirplane =  airplaneService.createAirplane(airplaneRequestDto);
         return new ResponseEntity<> (savedAirplane, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update an existing airplane")
-    public ResponseEntity<AirplaneResponseDto> updateAirplane(@PathVariable("id") UUID id, @RequestBody AirplaneRequestDto airplaneRequestDto) {
+    @Operation(summary = "Update an existing airplane.")
+    public ResponseEntity<AirplaneResponseDto> updateAirplane(@PathVariable("id") UUID id, @Valid @RequestBody AirplaneRequestDto airplaneRequestDto) {
         AirplaneResponseDto savedAirplane = airplaneService.updateAirplane(id, airplaneRequestDto);
         return new ResponseEntity<> (savedAirplane, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get an existing airplane")
+    @Operation(summary = "Get an existing airplane.")
     public ResponseEntity<AirplaneResponseDto> getAirplaneById(@PathVariable("id") UUID id) {
         AirplaneResponseDto airplane = airplaneService.getAirplaneById(id);
         return new ResponseEntity<> (airplane, HttpStatus.OK);
     }
 
     @GetMapping
-    @Operation(summary = "Get all airplanes")
+    @Operation(summary = "Get all airplanes.")
     public ResponseEntity<List<AirplaneResponseDto>> getAllAirplanes() {
         List<AirplaneResponseDto> airplanes = airplaneService.getAllAirplanes();
         return new ResponseEntity<>(airplanes, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete an existing airplane")
-    public ResponseEntity<Void> deleteAirplane(@PathVariable UUID id) {
+    @Operation(summary = "Delete an existing airplane.")
+    public ResponseEntity<Void> deleteAirplane(@PathVariable("id") UUID id) {
         airplaneService.deleteAirplane(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -23,28 +23,28 @@ public class AircraftController {
     private AircraftService aircraftService;
 
     @PostMapping
-    @Operation(summary = "Create a new aircraft")
+    @Operation(summary = "Create a new aircraft.")
     public ResponseEntity<AircraftResponseDto> createAircraft(@Valid @RequestBody AircraftRequestDto dto) {
         AircraftResponseDto savedAircraft = aircraftService.createAircraft(dto);
         return new ResponseEntity<>(savedAircraft, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update an existing aircraft")
-    public ResponseEntity<AircraftResponseDto> updateAircraft(@PathVariable("id") UUID id, @RequestBody AircraftRequestDto dto) {
+    @Operation(summary = "Update an existing aircraft.")
+    public ResponseEntity<AircraftResponseDto> updateAircraft(@PathVariable("id") UUID id, @Valid @RequestBody AircraftRequestDto dto) {
         AircraftResponseDto updatedAircraft = aircraftService.updateAircraft(id, dto);
         return new ResponseEntity<>(updatedAircraft, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get an aircraft by ID")
+    @Operation(summary = "Get an aircraft by ID.")
     public ResponseEntity<AircraftResponseDto> getAircraftById(@PathVariable("id") UUID id) {
         AircraftResponseDto aircraft = aircraftService.getAircraftById(id);
         return new ResponseEntity<>(aircraft, HttpStatus.OK);
     }
 
     @GetMapping
-    @Operation(summary = "Get all aircraft")
+    @Operation(summary = "Get all aircraft with filters.")
     public ResponseEntity<List<AircraftResponseDto>> getAllAircraft(
             @RequestParam(value = "airplaneId", required = false) UUID airplaneId,
             @RequestParam(value = "airlineId", required = false) UUID airlineId
@@ -54,7 +54,7 @@ public class AircraftController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete an aircraft")
+    @Operation(summary = "Delete an aircraft.")
     public ResponseEntity<Void> deleteAircraft(@PathVariable("id") UUID id) {
         aircraftService.deleteAircraft(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

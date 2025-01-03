@@ -26,42 +26,42 @@ public class AirlineController {
     private AirlineService airlineService;
 
     @PostMapping
-    @Operation(summary = "Create a new airline")
+    @Operation(summary = "Create a new airline.")
     public ResponseEntity<AirlineResponseDto> createAirline(@Valid @RequestBody AirlineRequestDto airlineRequestDto) {
         AirlineResponseDto savedAirline = airlineService.createAirline(airlineRequestDto);
         return new ResponseEntity<>(savedAirline, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update an existing airline")
-    public ResponseEntity<AirlineResponseDto> updateAirline(@PathVariable("id") UUID id, @RequestBody AirlineRequestDto airlineRequestDto) {
+    @Operation(summary = "Update an existing airline.")
+    public ResponseEntity<AirlineResponseDto> updateAirline(@PathVariable("id") UUID id, @Valid @RequestBody AirlineRequestDto airlineRequestDto) {
         AirlineResponseDto updatedAirline = airlineService.updateAirline(id, airlineRequestDto);
         return new ResponseEntity<>(updatedAirline, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get an existing airline by ID")
+    @Operation(summary = "Get an existing airline by ID.")
     public ResponseEntity<AirlineResponseDto> getAirlineById(@PathVariable("id") UUID id) {
         AirlineResponseDto airline = airlineService.getAirlineById(id);
         return new ResponseEntity<>(airline, HttpStatus.OK);
     }
 
     @GetMapping
-    @Operation(summary = "Get all airlines")
+    @Operation(summary = "Get all airlines.")
     public ResponseEntity<List<AirlineResponseDto>> getAllAirlines() {
         List<AirlineResponseDto> airlines = airlineService.getAllAirlines();
         return new ResponseEntity<>(airlines, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete an existing airline")
+    @Operation(summary = "Delete an existing airline.")
     public ResponseEntity<Void> deleteAirline(@PathVariable("id") UUID id) {
         airlineService.deleteAirline(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/{airlineId}/add-hub/{airportId}")
-    @Operation(summary = "Add an airport as a hub for an airline")
+    @Operation(summary = "Add an airport as a hub for an airline.")
     public ResponseEntity<AirlineResponseDto> addHubToAirline(@PathVariable("airlineId") UUID airlineId, @PathVariable("airportId") UUID airportId) {
         AirlineResponseDto updatedAirline = airlineService.addHubToAirline(airlineId, airportId);
         return new ResponseEntity<>(updatedAirline, HttpStatus.OK);
